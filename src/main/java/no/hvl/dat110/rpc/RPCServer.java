@@ -65,8 +65,18 @@ public class RPCServer {
 	}
 	
 	public void stop() {
-		connection.close();
-		msgserver.stop();
+
+		if (connection != null) {
+			connection.close();
+		} else {
+			System.out.println("RPCServer.stop - connection was null");
+		}
+		
+		if (msgserver != null) {
+			msgserver.stop();
+		} else {
+			System.out.println("RPCServer.stop - msgserver was null");
+		}
 		
 	}
 }

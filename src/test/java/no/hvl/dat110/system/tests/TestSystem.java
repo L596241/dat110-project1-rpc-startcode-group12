@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import no.hvl.dat110.system.controller.Controller;
 import no.hvl.dat110.system.display.DisplayDevice;
 import no.hvl.dat110.system.sensor.SensorDevice;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 class TestSystem {
 
@@ -15,27 +16,60 @@ class TestSystem {
 
 		System.out.println("System starting ...");
 
-		Runnable display = () -> DisplayDevice.main(null);
-		Runnable sensor = () -> SensorDevice.main(null);
-		Runnable controller = () -> Controller.main(null);
-
-		Thread displaythread = new Thread(display);
-		Thread sensorthread = new Thread(sensor);
-		Thread controllerthread = new Thread(controller);
-
-		displaythread.start();
-		sensorthread.start();
+		AtomicBoolean failure = new AtomicBoolean(false);
 		
-		// let the servers start first
+		Thread displaythread = new Thread() {
+
+			public void run() {
+				
+				try {
+					DisplayDevice.main(null);
+				} catch (Exception e) {
+					e.printStackTrace();
+					failure.set(true);
+				}
+			}
+			
+		};
+		
+		Thread sensorthread = new Thread() {
+			
+			public void run() {
+				
+				try {
+				SensorDevice.main(null);
+				} catch (Exception e) {
+					e.printStackTrace();
+					failure.set(true);
+				}
+			}
+			
+		};
+		
+		
+		Thread controllerthread = new Thread() {
+			
+			public void run() {
+				
+				try {
+				Controller.main(null);
+				} catch (Exception e) {
+					e.printStackTrace();
+					failure.set(true);
+				}
+			}
+			
+		};
+
 		try {
+			
+			displaythread.start();
+			sensorthread.start();
+		
+			// let the servers start first
 			Thread.sleep(2000);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		controllerthread.start();
-
-		try {
+			
+			controllerthread.start();
 			
 			displaythread.join();
 			sensorthread.join();
@@ -43,12 +77,19 @@ class TestSystem {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			fail();
+		} finally {
+			System.out.println("System stopping ...");
+			
+			if (failure.get()) {
+				fail();
+			}
 		}
 		
 		// we check only termination here
 		assertTrue(true);
 			
-		System.out.println("System stopping ...");
+	
 	}
 
 }

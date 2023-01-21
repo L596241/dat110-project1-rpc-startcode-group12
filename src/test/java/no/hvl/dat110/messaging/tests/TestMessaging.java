@@ -11,24 +11,28 @@ import no.hvl.dat110.messaging.Message;
 import no.hvl.dat110.messaging.MessageUtils;
 import no.hvl.dat110.messaging.MessagingClient;
 import no.hvl.dat110.messaging.MessagingServer;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TestMessaging {
-
-	private boolean failure;
 
 	@Test
 	public void test() {
 
 		byte[] clientsent = { 1, 2, 3, 4, 5 };
 
+		AtomicBoolean failure = new AtomicBoolean(false);
+
 		Thread server = new Thread() {
 
 			public void run() {
 
+				MessagingServer server = null;
+
 				try {
+
 					System.out.println("Messaging server - start");
 
-					MessagingServer server = new MessagingServer(MessageUtils.MESSAGINGPORT);
+					server = new MessagingServer(MessageUtils.MESSAGINGPORT);
 
 					Connection connection = server.accept();
 
@@ -42,15 +46,15 @@ public class TestMessaging {
 
 					connection.close();
 
-					server.stop();
-
-					System.out.println("Messaging server - stop");
-
 					assertTrue(Arrays.equals(clientsent, serverreceived));
 
 				} catch (Exception e) {
 					e.printStackTrace();
-					failure = true;
+					failure.set(true);
+				} finally {
+					server.stop();
+
+					System.out.println("Messaging server - stop");
 				}
 
 			}
@@ -84,7 +88,7 @@ public class TestMessaging {
 					assertTrue(Arrays.equals(clientsent, clientreceived));
 				} catch (Exception e) {
 					e.printStackTrace();
-					failure = true;
+					failure.set(true);
 				}
 			}
 
@@ -99,9 +103,9 @@ public class TestMessaging {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			failure = true;
+			fail();
 		} finally {
-			if (failure) {
+			if (failure.get()) {
 				fail();
 			}
 		}
