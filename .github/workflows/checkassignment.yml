@@ -17,4 +17,4 @@ jobs:
       - name: Compile with Maven
         run: mvn --batch-mode --update-snapshots compile
       - name: Test with Maven
-          run: mvn --batch-mode --update-snapshots test
+        run: mvn --batch-mode --update-snapshots test
