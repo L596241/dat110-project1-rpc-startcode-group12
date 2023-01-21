@@ -1,6 +1,9 @@
 name: Check assignment code
 
-on: [push]
+on:
+  push:
+    tags:
+      - 'handin[0-9]+'
 
 jobs:
   build:
