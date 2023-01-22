@@ -7,15 +7,17 @@ public class RPCServerStopImpl extends RPCRemoteImpl {
 	}
 	
 	// RPC server-side implementation of the built-in stop RPC method
-	public byte[] invoke(byte[] request) {
+	// params - marshalled parameter for the method
+	// return value - marshalled return value
+	public byte[] invoke(byte[] param) {
 		
-		RPCUtils.unmarshallVoid(request);
+		RPCUtils.unmarshallVoid(param);
 		
-		byte[] reply = RPCUtils.marshallVoid(); 
+		byte[] returnval = RPCUtils.marshallVoid();
 		
 		stop(); 
 		
-		return reply;
+		return returnval;
 	}
 	
 	public void stop() {

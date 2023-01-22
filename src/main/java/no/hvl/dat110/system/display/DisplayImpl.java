@@ -10,13 +10,14 @@ public class DisplayImpl extends RPCRemoteImpl {
 	public DisplayImpl(byte rpcid, RPCServer rpcserver) {
 		super(rpcid,rpcserver);
 	}
+
 	public void write(String message) {
 		System.out.println("DISPLAY:" + message);
 	}
 	
-	public byte[] invoke(byte[] params) {
+	public byte[] invoke(byte[] param) {
 		
-		byte[] reply = null;
+		byte[] returnval = null;
 		
 		// TODO - START: 
 		// implement unmarshalling, call, and marshall for write RPC method
@@ -27,6 +28,6 @@ public class DisplayImpl extends RPCRemoteImpl {
 		
 		// TODO - END
 		
-		return reply;
+		return returnval;
 	}
 }

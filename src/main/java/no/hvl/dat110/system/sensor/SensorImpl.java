@@ -11,7 +11,8 @@ public class SensorImpl extends RPCRemoteImpl {
 	public SensorImpl(byte rpcid, RPCServer rpcserver) {
 		super(rpcid,rpcserver);
 	}
-	
+
+	// implementation of the RPC method
 	public int read() {
 
 		long seconds = System.currentTimeMillis();
@@ -22,10 +23,11 @@ public class SensorImpl extends RPCRemoteImpl {
 		
 		return (int) Math.ceil(temp);
 	}
-	
-	public byte[] invoke(byte[] params) {
+
+	// called by RPC server on rpc identifier corresponding to read
+	public byte[] invoke(byte[] param) {
 				
-		RPCUtils.unmarshallVoid(params); 
+		RPCUtils.unmarshallVoid(param);
 		
 		int temp = read();
 				

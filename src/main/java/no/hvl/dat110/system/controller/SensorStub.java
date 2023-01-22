@@ -5,25 +5,21 @@ import no.hvl.dat110.rpc.*;
 
 public class SensorStub extends RPCLocalStub {
 
-	private byte RPCIDREAD = 1;
-	
 	public SensorStub(RPCClient rpcclient) {
 		super(rpcclient);
 	}
-	
+
 	public int read() {
-		
-		int temp = 0;
-		
-		// TODO - START
-		// implement marshalling, call and unmarshalling for read RPC method
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
-		
+
+		// marshall parameter to read call (void parameter)
+		byte[] request = RPCUtils.marshallVoid();
+
+		// make remote procedure call for read
+		byte[] response = rpcclient.call((byte)Common.READ_RPCID, request);
+
+		// unmarshall the return value from the call (an integer)
+		int temp = RPCUtils.unmarshallInteger(response);
+
 		return temp;
 	}
-	
 }

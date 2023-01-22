@@ -173,11 +173,9 @@ The controller should regularly retrieve the current temperature using a `int re
 
 The implementation of the controller is to be provided in the `no.dat110.system.controller` package. You must implement the code missing in the following classes
 
-- `DisplayStub.java` - here you have to implement the client-side stub of the  `void write(String str)` RPC method. See the `RPCServerStopStub.java` for inspiration.
+- `DisplayStub.java` - here you have to implement the client-side stub of the  `void write(String str)` RPC method. See the `RPCServerStopStub.java` and  `SensorStub.java` for inspiration. The latter implements the client-side stub for the `int read()` RPC method.
 
-- `SensorStub.java` - here you have to implement the client-side stub for the `int read()` RPC method.
-
-- `Controller.java` - here you have to implement the client-side stubs fo the `read` and `display` methods. Finally, the controller must connect to the sensor and display RPC servers and implement a finite loop in which the temperature is retrieved from the sensor (using the read method) and shown on the display (using the write method).
+- `Controller.java` - here you have to complete the implementation of the controller (client) such that it connects to the sensor and display RPC servers and implement a finite loop in which the temperature is retrieved from the sensor (using the read method) and shown on the display (using the write method).
 
 #### Display implementation
 
