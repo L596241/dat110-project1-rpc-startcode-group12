@@ -2,7 +2,6 @@ package no.hvl.dat110.messaging;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.net.Socket;
 
 import no.hvl.dat110.TODO;
 
@@ -24,9 +23,9 @@ public class MessagingServer {
 	}
 
 	// accept an incoming connection from a client
-	public Connection accept() {
+	public MessageConnection accept() {
 
-		Connection connection = null;
+		MessageConnection connection = null;
 
 		// TODO - START
 		// accept TCP connection on welcome socket and create connection

@@ -1,8 +1,6 @@
 package no.hvl.dat110.messaging;
 
 
-import java.io.IOException;
-
 import java.net.Socket;
 
 import no.hvl.dat110.TODO;
@@ -18,10 +16,10 @@ public class MessagingClient {
 	}
 	
 	// connect to messaging server
-	public Connection connect () {
+	public MessageConnection connect () {
 			
 		Socket clientSocket;
-		Connection connection = null;
+		MessageConnection connection = null;
 		
 		// TODO - START
 		// create TCP socket for client and connection

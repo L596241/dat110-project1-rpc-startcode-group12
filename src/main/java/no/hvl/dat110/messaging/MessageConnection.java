@@ -9,13 +9,13 @@ import java.net.Socket;
 import no.hvl.dat110.TODO;
 
 
-public class Connection {
+public class MessageConnection {
 
 	private DataOutputStream outStream; // for writing bytes to the TCP connection
 	private DataInputStream inStream; // for reading bytes from the TCP connection
 	private Socket socket; // socket for the underlying TCP connection
 	
-	public Connection(Socket socket) {
+	public MessageConnection(Socket socket) {
 
 		try {
 

@@ -3,14 +3,14 @@ package no.hvl.dat110.rpc;
 import java.util.HashMap;
 
 import no.hvl.dat110.TODO;
-import no.hvl.dat110.messaging.Connection;
+import no.hvl.dat110.messaging.MessageConnection;
 import no.hvl.dat110.messaging.Message;
 import no.hvl.dat110.messaging.MessagingServer;
 
 public class RPCServer {
 
 	private MessagingServer msgserver;
-	private Connection connection;
+	private MessageConnection connection;
 	
 	// hashmap to register RPC methods which are required to extend RPCRemoteImpl	
 	private HashMap<Byte,RPCRemoteImpl> services;

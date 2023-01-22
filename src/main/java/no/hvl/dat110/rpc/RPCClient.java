@@ -6,7 +6,7 @@ import no.hvl.dat110.messaging.*;
 public class RPCClient {
 
 	private MessagingClient msgclient;
-	private Connection connection;
+	private MessageConnection connection;
 	
 	public RPCClient(String server, int port) {
 	
