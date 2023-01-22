@@ -7,6 +7,7 @@ import no.hvl.dat110.TODO;
 
 public class MessagingServer {
 
+	// server-side socket for accepting incoming TCP connections
 	private ServerSocket welcomeSocket;
 
 	public MessagingServer(int port) {
@@ -28,7 +29,7 @@ public class MessagingServer {
 		MessageConnection connection = null;
 
 		// TODO - START
-		// accept TCP connection on welcome socket and create connection
+		// accept TCP connection on welcome socket and create messaging connection to be returned
 
 		if (true)
 			throw new UnsupportedOperationException(TODO.method());
