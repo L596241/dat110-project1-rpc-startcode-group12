@@ -12,7 +12,8 @@ public class RPCServer {
 	private MessagingServer msgserver;
 	private MessageConnection connection;
 	
-	// hashmap to register RPC methods which are required to extend RPCRemoteImpl	
+	// hashmap to register RPC methods which are required to extend RPCRemoteImpl
+	// the key in the hashmap is the RPC identifier of the method
 	private HashMap<Byte,RPCRemoteImpl> services;
 	
 	public RPCServer(int port) {
@@ -38,20 +39,21 @@ public class RPCServer {
 		while (!stop) {
 	    
 		   byte rpcid = 0;
-		   Message requestmsg,replymsg;
+		   Message requestmsg, replymsg;
 		   
 		   // TODO - START
-		   // - receive Message containing RPC request
-		   // - find the identifier for the RPC method to invoke
+		   // - receive a Message containing an RPC request
+		   // - extract the identifier for the RPC method to be invoked from the RPC request
 		   // - lookup the method to be invoked
 		   // - invoke the method
-		   // - send back message containing RPC reply
+		   // - send back the message containing RPC reply
 			
 		   if (true)
 				throw new UnsupportedOperationException(TODO.method());
 		   
 		   // TODO - END
-		   
+
+			// stop the server if it was stop methods that was called
 		   if (rpcid == RPCCommon.RPIDSTOP) {
 			   stop = true;
 		   }
@@ -59,7 +61,7 @@ public class RPCServer {
 	
 	}
 	
-	// used by server side implementation to register themselves in the RPC server
+	// used by server side method implementations to register themselves in the RPC server
 	public void register(byte rpcid, RPCRemoteImpl impl) {
 		services.put(rpcid, impl);
 	}

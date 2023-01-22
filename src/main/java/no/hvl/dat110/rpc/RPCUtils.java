@@ -12,7 +12,7 @@ public class RPCUtils {
 		
 		// TODO - START
 		
-		// Encapsulate the rpcid and payload in a byte array according to the  RPC message syntax
+		// Encapsulate the rpcid and payload in a byte array according to the RPC message syntax / format
 		
 		if (true)
 			throw new UnsupportedOperationException(TODO.method());
@@ -28,7 +28,7 @@ public class RPCUtils {
 		
 		// TODO - START
 		
-		// Decapsulate the rpcid and payload in a byte array according to the  RPC message syntax
+		// Decapsulate the rpcid and payload in a byte array according to the RPC message syntax
 		
 		if (true)
 			throw new UnsupportedOperationException(TODO.method());
@@ -38,7 +38,8 @@ public class RPCUtils {
 		return payload;
 		
 	}
-	
+
+	// convert String to byte array
 	public static byte[] marshallString(String str) {
 		
 		byte[] encoded = null;
@@ -52,7 +53,8 @@ public class RPCUtils {
 		
 		return encoded;
 	}
-	
+
+	// convert byte array to a String
 	public static String unmarshallString(byte[] data) {
 		
 		String decoded = null; 
@@ -90,7 +92,8 @@ public class RPCUtils {
 			throw new UnsupportedOperationException(TODO.method());
 		
 	}
-	
+
+	// convert boolean to a byte array representation
 	public static byte[] marshallBoolean(boolean b) {
 		
 		byte[] encoded = new byte[1];
@@ -104,13 +107,15 @@ public class RPCUtils {
 		
 		return encoded;
 	}
-	
+
+	// convert byte array to a boolean representation
 	public static boolean unmarshallBoolean(byte[] data) {
 		
 		return (data[0] > 0);
 		
 	}
-	
+
+	// integer to byte array representation
 	public static byte[] marshallInteger(int x) {
 		
 		byte[] encoded = null;
@@ -125,7 +130,7 @@ public class RPCUtils {
 		return encoded;
 	}
 	
-	
+	// byte array representation to integer
 	public static int unmarshallInteger(byte[] data) {
 		
 		int decoded = 0;
