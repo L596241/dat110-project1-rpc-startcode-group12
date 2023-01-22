@@ -2,13 +2,13 @@
 
 The tasks related to this project will be part of the lab exercises in the next two weeks.
 
-The project will be / has been introduced in the lectures and two in videos: one introducing the project and one introducing RPC is available on Canvas.
+The project will be / has been introduced in the lectures See Canvas for details.
 
 ### Organisation
 
 The project is to be undertaken in **groups of 2-4 students**.
 
-You are strongly encouraged to use the DAT110 Discord server throughout the project if you encounter issues or have questions related to the project. The labs can also be used to obtain help.
+The labs can be used to obtain help with the project. You are strongly encouraged to also use the DAT110 Discord server throughout the project if you encounter issues or have questions related to the project. 
 
 The deadline for handing in the project can be found in Canvas.
 
@@ -16,9 +16,9 @@ The deadline for handing in the project can be found in Canvas.
 
 The project builds on socket programming and network applications, and aims to consolidate important concepts covered in the course until now: layering, services, protocols, headers, encapsulation/decapsulation, remote procedure calls (RPC), and marshalling/unmarshalling.
 
-The end-goal of the project is to implement a small IoT system consisting of a temperature sensor application, a controller application, and a display application. The controller is to request the current temperature from the temperature sensor and then request the display to show the temperature.
+The end-goal of the project is to implement a small IoT system consisting of a temperature sensor application, a controller application, and a display application. The controller is to request the current temperature from the temperature sensor (using RPC) and then request the display to show the temperature (using RPC).
 
-The overall system is illustrated below.
+The overall system and the communication between the components are illustrated below.
 
 ![](assets/markdown-img-paste-20200124152600673.jpg)
 
@@ -79,13 +79,15 @@ It should not be necessary to add additional classes in the start-code in order 
 
 ### Task 1: Messaging layer
 
-The messaging layer is to be implemented on top of TCP sockets and provide a service for connection-oriented, reliable, and bidirectional exchange of (short) messages carrying up to 127 bytes of data/payload. The messaging layer is to be based on a client-server architecture supporting a client in establishing a connection to a server on top of which the messages can be exchanged.
+The messaging layer is to be implemented using sockets on top of the TCP transport service and provide a service for connection-oriented, reliable, and bidirectional exchange of (short) messages carrying up to 127 bytes of data/payload. 
+
+The messaging layer is to be based on a client-server architecture supporting a (messaging) client in establishing a connection to a (messaing) server on top of which the messages can be exchanged.
 
 This is illustrated in the figure below which shows the messaging layer connection for exchange of messages on top of the TCP connection supporting a bidirectional bytestream. The boxes between the transport and messaging layers represents TCP sockets.
 
 ![](assets/markdown-img-paste-20200124152450204.jpg)
 
-The messaging protocol is based on sending fixed-sized *segments* of 128 bytes on the underlying TCP connection. The basic idea is that the first byte of the segment is to be interpreted as an integer in the range 0..127 specifying how many of the subsequent 127 bytes is payload data. Any remaining bytes is simply considered padding and can be ignored.
+The messaging protocol is based on sending fixed-sized *segments* of 128 bytes on the underlying TCP connection. The basic idea is that the first byte of the segment (header) is to be interpreted as an integer in the range 0..127 specifying how many of the subsequent 127 bytes is payload data. Any remaining bytes is simply considered padding and can be ignored.
 
 The figure below shows the syntax of the message format to be used in the messaging layer
 
@@ -105,7 +107,7 @@ You are required to implement the methods marked with `TODO` in the following cl
 
 - `MessagingServer.java` implementing the methods for the server-side of the messaging service. In the current project, a server is only required to handle a single connection from a client.
 
-Unit-tests for the messaging layer can be found in the `no.hvl.dat110.messaging.tests` package in the Eclipse testing project.
+Unit-tests for the messaging layer can be found in the `no.hvl.dat110.messaging.tests` package.
 
 **Optional challenge:** If you have time, you may consider implementing a messaging protocol that supports the exchange of arbitrarily long messages and without the use of padding.
 
@@ -113,7 +115,7 @@ Unit-tests for the messaging layer can be found in the `no.hvl.dat110.messaging.
 
 In this task you will implement a light-weight RPC middleware on top of the messaging layer from task 1. The RPC layer is also based on a client-server architecture in which the client-side is able to perform remote procedure calls on objects located on the server-side.
 
-The basic idea of RPC is that a process can execute method (procedure) calls over the network on remote objects residing inside other processes. This is illustrated in the figure below in which a client invokes a method on a local-object (also called a stub/proxy) object while the actual execution of the method body takes place in the remote object located on another machine and implementing the actual functionality of the method.
+The basic idea of RPC is that a process can execute method (procedure) calls over the network on remote objects residing inside other processes. This is illustrated in the figure below in which a client invokes a method on a local-object (also called a stub/proxy) while the actual execution of the method body takes place in the remote object located on another machine and implementing the actual functionality of the method.
 
 ![](assets/markdown-img-paste-20200124152725863.jpg)
 
@@ -171,11 +173,11 @@ The controller should regularly retrieve the current temperature using a `int re
 
 The implementation of the controller is to be provided in the `no.dat110.system.controller` package. You must implement the code missing in the following classes
 
-- `DisplayStub.java` - here you have to implement the client-side stub of the  `void write(String str)` RPC method. See the `RPCServerStopStub.java`for inspiration.
+- `DisplayStub.java` - here you have to implement the client-side stub of the  `void write(String str)` RPC method. See the `RPCServerStopStub.java` for inspiration.
 
 - `SensorStub.java` - here you have to implement the client-side stub for the `int read()` RPC method.
 
-- `Controller.java` - here you have to implement the creation of the client-side stubs. Finally, the controller must connect to the sensor and display RPC servers and implement a bounded-loop in which the temperature is retrieved from the sensor (using the read method) and shown on the display (using the write method).
+- `Controller.java` - here you have to implement the client-side stubs fo the `read` and `display` methods. Finally, the controller must connect to the sensor and display RPC servers and implement a finite loop in which the temperature is retrieved from the sensor (using the read method) and shown on the display (using the write method).
 
 #### Display implementation
 
