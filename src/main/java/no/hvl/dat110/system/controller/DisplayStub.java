@@ -4,7 +4,7 @@ import no.hvl.dat110.TODO;
 import no.hvl.dat110.rpc.*;
 
 public class DisplayStub extends RPCLocalStub {
-	
+
 	public DisplayStub(RPCClient rpcclient) {
 		super(rpcclient);
 	}
