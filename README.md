@@ -49,34 +49,40 @@ This in turn means that the project is comprised of three main tasks
 
 ### Getting started - obtaining the startcode and unit-test projects
 
-The start-code and code containing unit tests is available via git.
-
-There is a page on Canvas (from the DAT100 course) which revisits the most important git operations (for those that fell a bit rusty on git)
+The start-code and code containing unit tests is available via this git repository.
 
 #### Fork and clone the start-code repository
 
 One member of the group should start by entering the following repository on github:
 
-https://github.com/selabhvl/dat110-project1-startcode.git
+https://github.com/lmkr/dat110-project1-rpc-startcode
 
-and then do a *Fork* of the repository (see button in the upper right of the repository web page).
+and then do a *Use this template* of the repository (see button in the upper right of the repository web page).
 
 This will create a "copy" of the start-code repository on that group members own github repository account.
 
-In order for the other group members to work together on the forked copy of the start-code, the other group members must be provided with access to read/write on the forked repository. See *Settings* and *Manage Access* for the repository that was forked.
+In order for the other group members to work together on the (template) copy of the start-code, the other group members must be provided with access to read/write on  repository. See *Settings* and *Manage Access* for the repository that was forked.
 
-The other group members must *clone* (not fork) the forked repository which can now be used as a repository for collaborating on the code.
+The other group members must *clone* the repository of the group member which can now be used as a repository for collaborating on the code.
 
-#### Clone the testing repository
+The repository contains the start code organised into a [Maven](https://maven.apache.org/) project and can be imported into IDEs such as Eclipse and IntelliJ. 
 
-In addition, each group member should clone (but not fork) the following project:
-
-https://github.com/selabhvl/dat110-project1-testing
-
-which contains a number of unit tests that can be used for some basic testing of the implemented functionality. These tests are by no means complete, and when running the test you should also check in the Eclipse console that no exceptions are raised when running the tests.
+The `src/main` folder contains the source code while the `src/test` folder contains a number of unit tests that can be used for some basic testing of the implemented functionality. These tests are by no means complete, and when running the test you should also check in the Eclipse console that no exceptions are raised when running the tests.
 
 It should not be necessary to add additional classes in the start-code in order to complete the project. The unit-tests should not be modified as they will be used for evaluation of the submitted solution.
 
+The code and tests can be compiled and run from the IDE or using maven commands with targets such as:
+
+```
+%>mvn compile
+%>mvn test
+```
+
+It is also possible to execute the individual test classes by specifying the specific test-class to be executed. Below is an example of how to execute the tests in the `TestMessage`-class.
+
+```
+%> mvn test -Dtest=TestMessage 
+```
 ### Task 1: Messaging layer
 
 The messaging layer is to be implemented using sockets on top of the TCP transport service and provide a service for connection-oriented, reliable, and bidirectional exchange of (short) messages carrying up to 127 bytes of data/payload. 
@@ -215,6 +221,15 @@ You can run the individual devices and the controller in separate JVMs by starti
 
 ### Handing in the project
 
-Each group must hand in a **link** on Canvas to a git-repository containing their implementation and a **screen-shot** showing the result of running all the unit-tests.
+1. When the group is ready to hand-in, a *tagged commit* must be pushed to github in order to trigger an action which compiles the solution and runs all test on github. This is done using the following git commands - where *X* is to be replaced by a number:
 
-Remember to hand-in as a group as described in the guide available on Canvas.
+```
+%> git tag handinX
+%> git push origin handinX
+```
+
+If you for some reason need to hand in again, then *X* will have to be a new number. **Note** it is no problem to push changes multiple times, but the github action is only triggered when you push a specific tag. You can go to your repository on github and check the result of executing the action by selecting the *Actions* tab.
+
+2. The group must hand in a **link** on Canvas to the git-repository containing their implementation. **Remember** to hand-in as a group as described in the guide available on Canvas.
+
+3. The group must provide read access to their solution repository to the lab-assistent. The usernames of the lab-assistants are available via github. 
