@@ -57,9 +57,11 @@ One member of the group should start by entering the following repository on git
 
 https://github.com/lmkr/dat110-project1-rpc-startcode
 
-and then do a *Use this template* of the repository (see button in the upper right of the repository web page).
+and then do a *Use this template* of the repository (see button in the upper right of the repository web page as shown in the figure below).
 
-This will create a "copy" of the start-code repository on that group members own github repository account.
+![](assets/github-template.png)
+
+This will create a "copy" of the start-code repository on that group members own github repository account. **Name** the copy of the repository as `dat110-project1-rpc-groupX` where `X` is your group number. 
 
 In order for the other group members to work together on the (template) copy of the start-code, the other group members must be provided with access to read/write on  repository. See *Settings* and *Manage Access* for the repository that was forked.
 
@@ -228,8 +230,10 @@ You can run the individual devices and the controller in separate JVMs by starti
 %> git push origin handinX
 ```
 
-If you for some reason need to hand in again, then *X* will have to be a new number. **Note** it is no problem to push changes multiple times, but the github action is only triggered when you push a specific tag. You can go to your repository on github and check the result of executing the action by selecting the *Actions* tab.
+If you for some reason need to hand in again, then *X* will have to be a new number. **Note** it is no problem to push changes multiple times, but the github action is only triggered when you push a specific tag. You can go to your repository on github and check the result of executing the action by selecting the *Actions* tab as shown in the figure below.
 
 2. The group must hand in a **link** on Canvas to the git-repository containing their implementation. **Remember** to hand-in as a group as described in the guide available on Canvas.
 
 3. The group must provide **read access** to their solution repository to the lab-assistent. The usernames of the lab-assistants are available via github. 
+
+![](assets/github-actions.png)
