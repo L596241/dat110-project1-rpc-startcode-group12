@@ -67,7 +67,10 @@ In order for the other group members to work together on the (template) copy of 
 
 The other group members must *clone* the repository of the group member which can now be used as a repository for collaborating on the code.
 
-The repository contains the start code organised into a [Maven](https://maven.apache.org/) project and can be imported into IDEs such as Eclipse and IntelliJ. 
+The repository contains the start code organised into a [Maven](https://maven.apache.org/) project and can be imported into IDEs such as Eclipse and IntelliJ.
+
+- Importing into Eclipse: Use `File -> Import -> Maven -> Existing Maven Projects` to import the startcode project
+- Importing into IntelliJ: Use `File -> Open` to import the startcode project
 
 The `src/main` folder contains the source code while the `src/test` folder contains a number of unit tests that can be used for some basic testing of the implemented functionality. These tests are by no means complete, and when running the test you should also check in the Eclipse console that no exceptions are raised when running the tests.
 
@@ -234,6 +237,6 @@ If you for some reason need to hand in again, then *X* will have to be a new num
 
 2. The group must hand in a **link** on Canvas to the git-repository containing their implementation. **Remember** to hand-in as a group as described in the guide available on Canvas.
 
-3. The group must provide **read access** to their solution repository to the lab-assistent. The usernames of the lab-assistants are available via github. 
+3. The group must provide **read access** to their solution repository to the lab-assistent. The usernames of the lab-assistants are available via Canvas. 
 
 ![](assets/github-actions.png)
