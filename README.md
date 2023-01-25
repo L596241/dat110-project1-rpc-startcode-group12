@@ -51,7 +51,7 @@ This in turn means that the project is comprised of three main tasks
 
 The start-code and code containing unit tests is available via this git repository.
 
-#### Fork and clone the start-code repository
+#### Use the start code repository as template 
 
 One member of the group should start by entering the following repository on github:
 
@@ -65,7 +65,9 @@ This will create a "copy" of the start-code repository on that group members own
 
 In order for the other group members to work together on the (template) copy of the start-code, the other group members must be provided with access to read/write on  repository. See *Settings* and *Manage Access* for the repository that was forked.
 
-The other group members must *clone* the repository of the group member which can now be used as a repository for collaborating on the code.
+### Clone the copy of the start-code repository 
+
+The group members must *clone* the repository of the group member which can now be used as a repository for collaborating on the code.
 
 The repository contains the start code organised into a [Maven](https://maven.apache.org/) project and can be imported into IDEs such as Eclipse and IntelliJ.
 
@@ -229,6 +231,9 @@ You can run the individual devices and the controller in separate JVMs by starti
 1. When the group is ready to hand-in, a **tagged commit** must be pushed to github in order to trigger an action which compiles the solution and runs all test on github. This is done using the following git commands - where *X* is to be replaced by a number:
 
 ```
+%> git add -u
+%> git commit -m "done"
+%> git push
 %> git tag handinX
 %> git push origin handinX
 ```
