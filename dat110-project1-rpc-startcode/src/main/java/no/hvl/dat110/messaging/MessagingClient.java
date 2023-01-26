@@ -1,9 +1,8 @@
 package no.hvl.dat110.messaging;
 
 
+import java.io.IOException;
 import java.net.Socket;
-
-import no.hvl.dat110.TODO;
 
 public class MessagingClient {
 
@@ -32,9 +31,12 @@ public class MessagingClient {
 		// Den deler som skaber forbindelser til serversiden.
 		// Må siggert lage en socket og ni må bruge messageconnection classen
 		// Bruge accept metode. (Vi skal bruge Socket programmering til å lage meldingsnivå)
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		try {
+			clientSocket = new Socket(server, port);
+			connection = new MessageConnection(clientSocket);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		// TODO - END
 		return connection;

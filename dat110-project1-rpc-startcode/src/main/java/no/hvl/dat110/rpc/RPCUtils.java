@@ -11,7 +11,6 @@ public class RPCUtils {
 		byte[] rpcmsg = null;
 		
 		// TODO - START
-		// Hvordan virger remote procedure control server?
 		// Encapsulate the rpcid and payload in a byte array according to the RPC message syntax / format
 		
 		if (true)

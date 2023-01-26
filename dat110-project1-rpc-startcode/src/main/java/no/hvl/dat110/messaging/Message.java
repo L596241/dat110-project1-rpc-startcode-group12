@@ -4,22 +4,21 @@ import no.hvl.dat110.TODO;
 
 public class Message {
 
-	// the up to 127 bytes of data (payload) that a message can hold
-	private byte[] data;
+    // the up to 127 bytes of data (payload) that a message can hold
+    private byte[] data;
 
-	// construction a Message with the data provided
-	public Message(byte[] data) {
-		
-		// TODO - START
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.constructor("Message"));
-			
-		// TODO - END
-	}
+    // constructor for a Message with the data provided
+    public Message(byte[] data) {
 
-	public byte[] getData() {
-		return this.data; 
-	}
+        // check that the data is not null and not longer than 127 bytes
+        if (data == null || data.length > 127) {
+            throw new IllegalArgumentException("Data cannot be null and must be less than 128 bytes.");
+        }
 
+        this.data = data;
+    }
+
+    public byte[] getData() {
+        return this.data;
+    }
 }
