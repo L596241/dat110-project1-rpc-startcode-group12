@@ -3,17 +3,24 @@ package no.hvl.dat110.messaging;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-import no.hvl.dat110.TODO;
-
+/**
+ * This class implements a messaging server that listens for incoming
+ * connections from clients on a specified port.
+ */
 public class MessagingServer {
 
 	// server-side socket for accepting incoming TCP connections
 	private ServerSocket welcomeSocket;
 
+	/**
+	 * Creates an instance of MessagingServer and listens on a specified port
+	 * 
+	 * @param port the port number to listen on
+	 */
 	public MessagingServer(int port) {
 
 		try {
-
+			// create a server socket on the specified port
 			this.welcomeSocket = new ServerSocket(port);
 
 		} catch (IOException ex) {
@@ -39,6 +46,10 @@ public class MessagingServer {
 		return connection;
 
 	}
+
+	/**
+	 * Closes the server socket and stops the messaging server
+	 */
 
 	public void stop() {
 

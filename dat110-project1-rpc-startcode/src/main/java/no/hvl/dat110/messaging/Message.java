@@ -1,6 +1,5 @@
 package no.hvl.dat110.messaging;
 
-import no.hvl.dat110.TODO;
 
 public class Message {
 

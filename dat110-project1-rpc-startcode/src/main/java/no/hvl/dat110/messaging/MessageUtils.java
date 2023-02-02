@@ -2,7 +2,7 @@ package no.hvl.dat110.messaging;
 
 import java.util.Arrays;
 
-import no.hvl.dat110.TODO;
+
 
 public class MessageUtils {
 
@@ -29,11 +29,12 @@ public class MessageUtils {
 
 	}
 
+	// Decapsulate the segment and incorporate the extracted payload data into a message.
 	public static Message decapsulate(byte[] segment) {
 
 		Message message = null;
 		int length = segment[0];
-		byte[] data = Arrays.copyOfRange(segment, 1, length + 1);
+		byte[] data = Arrays.copyOfRange(segment, 1, length + 1); //instead of for loop
 		message = new Message(data);
 
 		return message;

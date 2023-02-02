@@ -25,12 +25,8 @@ public class MessagingClient {
 
 		MessageConnection connection = null;
 		
-		// TODO - START
-		// connect to messaging server using a TCP socket
-		// create and return a corresponding messaging connection
-		// Den deler som skaber forbindelser til serversiden.
-		// Må siggert lage en socket og ni må bruge messageconnection classen
-		// Bruge accept metode. (Vi skal bruge Socket programmering til å lage meldingsnivå)
+		// Establish a connection to the messaging server using a TCP socket
+		// Generate and return the appropriate messaging connection associated with the socket.
 		try {
 			clientSocket = new Socket(server, port);
 			connection = new MessageConnection(clientSocket);
@@ -38,7 +34,6 @@ public class MessagingClient {
 			e.printStackTrace();
 		}
 		
-		// TODO - END
 		return connection;
 	}
 }
