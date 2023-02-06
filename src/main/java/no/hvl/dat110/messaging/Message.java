@@ -1,25 +1,27 @@
 package no.hvl.dat110.messaging;
 
-import no.hvl.dat110.TODO;
-
 public class Message {
 
-	// the up to 127 bytes of data (payload) that a message can hold
+	// The payload of the message, limited to 127 bytes.
 	private byte[] data;
 
-	// construction a Message with the data provided
+	/**
+	 * Constructs a Message with the provided data.
+	 * If the data is null or exceeds 127 bytes in length, it is not stored.
+	 * @param data the data to be stored as the payload of the Message
+	 */
 	public Message(byte[] data) {
 		
-		// TODO - START
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.constructor("Message"));
-			
-		// TODO - END
+		if(data != null && data.length < 128) {
+			this.data = data;
+		}
 	}
 
+	/**
+	 * Returns the payload of the Message.
+	 * @return the payload of the Message
+	 */
 	public byte[] getData() {
 		return this.data; 
 	}
-
 }

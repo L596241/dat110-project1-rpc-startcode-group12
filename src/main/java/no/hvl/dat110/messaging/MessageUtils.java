@@ -2,8 +2,6 @@ package no.hvl.dat110.messaging;
 
 import java.util.Arrays;
 
-import no.hvl.dat110.TODO;
-
 public class MessageUtils {
 
 	public static final int SEGMENTSIZE = 128;
@@ -11,38 +9,48 @@ public class MessageUtils {
 	public static int MESSAGINGPORT = 8080;
 	public static String MESSAGINGHOST = "localhost";
 
+	/**
+	 * Encapsulates the data contained in the Message and returns a byte array of segment
+	 * @param message - Message object containing data
+	 * @return byte array of segment
+	 */
 	public static byte[] encapsulate(Message message) {
 		
-		byte[] segment = null;
-		byte[] data;
+		byte[] segment = new byte[128];
+		byte[] data = message.getData();
+		int length = data.length;
 		
-		// TODO - START
+		// set the length of the payload data in the first byte of the segment
+		segment[0] = (byte) length;
 		
-		// encapulate/encode the payload data of the message and form a segment
-		// according to the segment format for the messaging layer
+		// copy the payload data into the remaining bytes of the segment
+		for(int i = 0; i < length; i++) {
+			segment[i+1] = data[i]; 
+		}
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-			
-		// TODO - END
 		return segment;
-		
 	}
 
+	/**
+	 * Decapsulates the byte array of segment into a Message object
+	 * @param segment - byte array of segment
+	 * @return Message object containing the decapsulated payload data
+	 */
 	public static Message decapsulate(byte[] segment) {
 
 		Message message = null;
+		int length = segment[0];
 		
-		// TODO - START
-		// decapsulate segment and put received payload data into a message
+		// extract the payload data from the segment
+		byte[] decapsulated = new byte[length];
+		for(int i = 0; i < length; i++) {
+			decapsulated[i] = segment[i+1];
+		}
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+		// create a Message object with the extracted payload data
+		message = new Message(decapsulated);
 		
 		return message;
-		
 	}
 	
 }

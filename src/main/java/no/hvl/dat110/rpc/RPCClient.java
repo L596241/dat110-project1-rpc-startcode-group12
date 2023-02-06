@@ -1,5 +1,8 @@
 package no.hvl.dat110.rpc;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import no.hvl.dat110.TODO;
 import no.hvl.dat110.messaging.*;
 
@@ -8,63 +11,52 @@ public class RPCClient {
 	// underlying messaging client used for RPC communication
 	private MessagingClient msgclient;
 
-	// underlying messaging connection used for RPC communication
+	// connection to the messaging server
 	private MessageConnection connection;
-	
+
 	public RPCClient(String server, int port) {
-	
-		msgclient = new MessagingClient(server,port);
+		// initialize the messaging client with the given server and port
+		msgclient = new MessagingClient(server, port);
 	}
-	
-	public void connect() {
-		
-		// TODO - START
-		// connect using the RPC client
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+
+	public void connect() throws UnknownHostException, IOException {
+		// establish the connection to the messaging server
+		connection = msgclient.connect();
 	}
-	
+
 	public void disconnect() {
-		
-		// TODO - START
-		// disconnect by closing the underlying messaging connection
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+		// close the connection to the messaging server
+		connection.close();
 	}
 
-	/*
-	 Make a remote call om the method on the RPC server by sending an RPC request message and receive an RPC reply message
-
-	 rpcid is the identifier on the server side of the method to be called
-	 param is the marshalled parameter of the method to be called
+	/**
+	 * Make a remote call on the method on the RPC server by sending an RPC request
+	 * message and receive an RPC reply message
+	 * 
+	 * @param rpcid  the identifier on the server side of the method to be called
+	 * @param param  the marshalled parameter of the method to be called
+	 * @return the return value of the RPC call, in bytes
 	 */
+	public byte[] call(byte rpcid, byte[] param)  {
 
-	public byte[] call(byte rpcid, byte[] param) {
-		
 		byte[] returnval = null;
-		
-		// TODO - START
 
 		/*
-
-		The rpcid and param must be encapsulated according to the RPC message format
-
-		The return value from the RPC call must be decapsulated according to the RPC message format
-
-		*/
-				
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		 * The rpcid and param must be encapsulated according to the RPC message format
+		 * 
+		 * The return value from the RPC call must be decapsulated according to the RPC
+		 * message format
+		 */
+		try {
+			// send an RPC request message to the messaging server
+			connection.send(new Message(RPCUtils.encapsulate(rpcid, param)));
+			// receive an RPC reply message from the messaging server
+			returnval = RPCUtils.decapsulate(connection.receive().getData());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		// TODO - END
 		return returnval;
-		
 	}
 
 }

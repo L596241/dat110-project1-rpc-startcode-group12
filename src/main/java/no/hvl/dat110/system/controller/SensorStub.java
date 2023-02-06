@@ -1,6 +1,5 @@
 package no.hvl.dat110.system.controller;
 
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.rpc.*;
 
 public class SensorStub extends RPCLocalStub {
@@ -11,15 +10,15 @@ public class SensorStub extends RPCLocalStub {
 
 	public int read() {
 
-		// marshall parameter to read call (void parameter)
+		// marshall a void parameter for the read call
 		byte[] request = RPCUtils.marshallVoid();
-
-		// make remote procedure call for read
+		
+		// make the remote procedure call for read
 		byte[] response = rpcclient.call((byte)Common.READ_RPCID, request);
-
-		// unmarshall the return value from the call (an integer)
+		
+		// unmarshall the integer response from the read call
 		int temp = RPCUtils.unmarshallInteger(response);
-
+		
 		return temp;
 	}
 }
